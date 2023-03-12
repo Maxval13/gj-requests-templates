@@ -13,11 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-import 1.2-requests-templates.recipes.calculator.views as recipes
+from calculator.views import recept
 from django.urls import path
+from django.contrib import admin
 
 urlpatterns = [
-    path('recept/', recipes)
-
-    # здесь зарегистрируйте вашу view-функцию
+    path('<url_>/', recept),
+    path('admin/', admin.site.urls),
 ]

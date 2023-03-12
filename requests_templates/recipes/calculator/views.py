@@ -1,3 +1,4 @@
+import copy
 from django.shortcuts import render
 
 DATA = {
@@ -16,18 +17,29 @@ DATA = {
         'сыр, ломтик': 1,
         'помидор, ломтик': 1,
     },
-    # можете добавить свои рецепты ;)
+    
 }
 
-def recipes(request):
-    # rec = request.GET.get['DATA']
-    return render(request, 'recept/')
-# Напишите ваш обработчик. Используйте DATA как источник данных
-# Результат - render(request, 'calculator/index.html', context)
-# В качестве контекста должен быть передан словарь с рецептом:
-# context = {
-#   'recipe': {
-#     'ингредиент1': количество1,
-#     'ингредиент2': количество2,
-#   }
-# }
+
+def recept(request, url_):
+    rec = []
+    for rec_key in DATA.keys():
+        rec.append(rec_key)
+    for i in range(len(rec)):
+        if rec[i] == url_:
+            name = rec[i]
+            servings = int(request.GET.get('servings', 1))
+            rec_copy = copy.copy(DATA[url_])
+            for ingredient, amount in DATA[url_].items():
+                rec_copy[ingredient] = amount * servings
+            context = {
+                'url_': url_,
+                'recipe': rec_copy,
+                'servings': servings,
+                'name': url_
+            }
+            return render(request, 'calculator/index.html', context)
+    context = {
+        'empty': None
+    }
+    return render(request, 'calculator/index.html', context)
