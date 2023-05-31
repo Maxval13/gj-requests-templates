@@ -31,7 +31,7 @@ Content-Type: application/json
 ###
 
 # удаление продукта
-DELETE {{baseUrl}}/products/1/
+DELETE {{baseUrl}}/products/3/
 Content-Type: application/json
 
 ###
@@ -47,7 +47,7 @@ POST {{baseUrl}}/stocks/
 Content-Type: application/json
 
 {
-  "address": "мой адрес не дом и не улица, мой адрес сегодня такой: www.ленинград-спб.ru",
+  "address": "Мой адрес не дом и не улица, мой адрес сегодня такой: www.ленинград-спб.ru",
   "positions": [
     {
       "product": 4,
@@ -65,7 +65,7 @@ Content-Type: application/json
 ###
 
 # обновляем записи на складе
-PATCH {{baseUrl}}/stocks/2/
+PATCH {{baseUrl}}/stocks/3/
 Content-Type: application/json
 
 {
@@ -86,5 +86,5 @@ Content-Type: application/json
 ###
 
 # поиск складов, где есть определенный продукт
-GET {{baseUrl}}/stocks/?products=3
+GET {{baseUrl}}/stocks/?products=4
 Content-Type: application/json
